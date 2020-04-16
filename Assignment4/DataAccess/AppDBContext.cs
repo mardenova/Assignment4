@@ -11,6 +11,6 @@ namespace Assignment4.DataAccess
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<HospitalData> StgModel { get; set; }
+        public DbSet<Hospital> Hospitals { get; set; }
     }
 }
