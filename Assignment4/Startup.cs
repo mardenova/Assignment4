@@ -22,23 +22,16 @@ namespace Assignment4
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+      
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setup EF connection
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                Configuration["Data:IEXTrading:ConnectionString"]));
-
-            // added from MVC template
+                Configuration["Data:HospitalDB:ConnectionString"]));
             services.AddMvc();
         }
 
-        // this is the version from the MVC template
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //This ensures that the database and tables are created as per the Models.
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
