@@ -26,28 +26,13 @@ namespace Assignment4.Controllers
         public IActionResult DataView()
         {
             APIHandler webHandler = new APIHandler();
-            GenData result = webHandler.GetGenData();
+            HospitalData result = webHandler.GetHospitals();
             
             foreach(var item in result.data)
             {
-                HospitalData MyData = new HospitalData();
-                MyData.drg_definition = item.drg_definition;
-                MyData.provider_id = item.provider_id;
-                MyData.provider_name = item.provider_name;
-                MyData.provider_city = item.provider_city;
-                MyData.provider_state = item.provider_state;
-                MyData.provider_street_address = item.provider_street_address;
-                MyData.provider_zip_code = item.provider_zip_code;
-                MyData.hospital_referral_region_description = item.hospital_referral_region_description;
-                MyData.total_discharges = item.total_discharges;
-                MyData.average_covered_charges = item.average_covered_charges;
-                MyData.average_medicare_payments = item.average_medicare_payments;
-                MyData.average_medicare_payments_2 = item.average_medicare_payments_2;
-                dbContext.StgModel.Add(MyData);
+                dbContext.Hospitals.Add(item);
             }
-            
             dbContext.SaveChanges();
-
             return View(result);
         }
 

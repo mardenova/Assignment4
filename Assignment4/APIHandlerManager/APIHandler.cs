@@ -24,13 +24,13 @@ namespace Assignment4.APIHandlerManager
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public GenData GetGenData()
+        public HospitalData GetHospitals()
         {
             string NATIONAL_PARK_API_PATH = BASE_URL;
             string json = "";
             string finalJson = "";
 
-            GenData result = null;
+            HospitalData result = null;
 
             httpClient.BaseAddress = new Uri(NATIONAL_PARK_API_PATH);
 
@@ -46,7 +46,7 @@ namespace Assignment4.APIHandlerManager
                 {
                     // Construct proper json, because original json that is returned from the url is an array
                     finalJson = "{\"data\":" + json + "}";
-                    result = JsonConvert.DeserializeObject<GenData>(finalJson);
+                    result = JsonConvert.DeserializeObject<HospitalData>(finalJson);
                 }
             }
             catch (Exception e)
